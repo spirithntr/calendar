@@ -2,10 +2,8 @@ const path = require("path");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require('webpack');
-const pug = {
-  test: /\.pug$/,
-  use: ['html-loader?attrs=false', 'pug-loader']
-};
+
+//var template = require("pug-loader!./file.pug");
 
 module.exports = {
   entry: {
@@ -14,11 +12,12 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: "./src/day.pug",
       myPageHeader: "PLEASE HELP",
       title: "IDK what im doing",
       hash: true,
-      filename: 'index.html'
+      //filename: 'index.html',
+      inject: 'true'
     })
   ],
   output: {
