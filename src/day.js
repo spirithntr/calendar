@@ -6,6 +6,10 @@ export default function renderDay(day, notes) {
   const app = document.querySelector('.app');
   app.innerHTML = '';
   let todayContainer = document.createElement('div');
+  let todayDate = document.createElement('div');
+  todayDate.classList.add('today-date');
+  todayDate.innerHTML = day.toDateString();
+  todayContainer.appendChild(todayDate);
 
   notes.forEach(note => {
     console.log(note.getDayFormat())
