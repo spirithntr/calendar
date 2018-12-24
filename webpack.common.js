@@ -12,7 +12,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
-      template: "./src/day.pug",
+      template: "./src/index.pug",
       myPageHeader: "PLEASE HELP",
       title: "IDK what im doing",
       hash: true,

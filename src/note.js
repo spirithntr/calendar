@@ -8,6 +8,7 @@ export default function Note(dayOfMonth, beginHour, endHour, record) {
   this.day = isDayValid(dayOfMonth) ? dayOfMonth : 1;
   this.beginHour = isHourValid(beginHour) ? beginHour : 0;
   this.endHour = isHourValid(endHour) && (endHour >= beginHour) ? endHour : 23;
+  // notes are fixed to current month right now
   this.date = new Date(2018, 11, this.day);
   this.record = record;
 }
@@ -24,4 +25,7 @@ Note.prototype.getDay = function () {
   
   let day = this.date.getDay();
   return weekday.get(day);
+}
+Note.prototype.getDayFormat = function () {
+  return this.date.toDateString();
 }
