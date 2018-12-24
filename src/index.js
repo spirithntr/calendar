@@ -1,14 +1,11 @@
 import './styles/app.sass';
 import './styles/day.sass';
 import Note from './note.js';
+import createMonthTable from './month.js';
 import renderDay from './day.js';
 // import { render } from 'pug';
-import renderWeek from './week';
+import createWeekRow from './week';
 
-// const Month = [];
-// Month.push(new Note(2, 12, 18));
-// Month.push(new Note(15, 10, 12));
-// Month.push(new Note(18, 10, 11));
 function renderDayTest(weekday) {
   let element = document.createElement('div');
   
@@ -21,15 +18,6 @@ function renderDayTest(weekday) {
   let app = document.querySelector('.app');
   app.appendChild(renderDayTest(name));
 })
-
-let Notes = [];
-let test = new Note(24, 12, 13, 'privet');
-let test1 = new Note(24, 12, 13, 'test1');
-let test2 = new Note(24, 12, 13, 'test2');
-let test3 = new Note(27, 12, 13, 'next day');
-Notes.push(test, test1, test2, test3);
-console.log(Notes);
-console.log('test day is actually a', test.getDay());
 
 function renderMonthTable() {
   let app = document.querySelector('.app');
@@ -44,9 +32,35 @@ function renderMonthTable() {
   table.appendChild(headerRow);
   app.appendChild(table);
   const currentDate = new Date();
-
 }
 
+function renderWeekView() {
+  const header = document.querySelector('.header');
+  const app = document.querySelector('.app');
+  header.innerHTML = 'Week';
+  const weekTable = document.createElement("table");
+  const weekRow = createWeekRow(new Date(), Notes);
+  app.innerHTML = "";
+  weekTable.appendChild(weekRow);
+  app.appendChild(weekTable);
+}
+function renderMonthView() {
+  const header = document.querySelector('.header');
+  const app = document.querySelector('.app');
+  app.innerHTML = '';
+  header.innerHTML = 'Month';
+  const table = createMonthTable(new Date(), Notes);
+  app.appendChild(table);
+}
 // renderMonthTable();
 // renderDay(Notes);
-renderWeek(new Date(2018,11,31), Notes);
+// renderWeek(new Date(2018,11,31), Notes);
+let Notes = [];
+let test = new Note(24, 12, 13, 'privet');
+let test1 = new Note(24, 12, 13, 'test1');
+let test2 = new Note(24, 12, 13, 'test2');
+let test3 = new Note(27, 12, 13, 'next day');
+Notes.push(test, test1, test2, test3);
+console.log(Notes);
+console.log('test day is actually a', test.getDay());
+renderMonthView();
